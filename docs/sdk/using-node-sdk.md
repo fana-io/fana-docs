@@ -4,23 +4,25 @@ id: using-node-sdk
 
 # Using the Node SDK
 
-1. Install the Fana Node SDK in your project by running _npm command_
-2. Import it into whichever files you will be evaluating flags in.
+1. Install the Fana Node SDK in your project by running `npm i fana-node-sdk`
+2. Import the `FanaConfig` file into whichever files you will be evaluating flags in
 
-`const FanaSDK = require('fana-node-sdk')`
+`const { FanaConfig } = require('fana-node-sdk');`
 
-3. Use the `FanaSDK`'s `Config` class constructor to instantiate a `config` object. This constructor takes two arguments:
+3. Use the `FanaConfig` class constructor to instantiate a `config` object. This constructor takes three arguments:
 
-- **SDK key** (from your dashboard's settings page)
-- The **address** of your Flag Bearer
+- (string) **Node SDK key** (from your dashboard's settings page)
+- (string) The **address** of your Flag Bearer
+- (number, optional) Desired **Reinitialization Interval**
+  - You can leave this blank if you do not wish for the SDK to reinitialize. You can find more information about this in the [Node SDK Reference](node-sdk-reference.md)
 
 ```javascript
-// the sdk key is hard-coded here, but you should have it as an environment variable for security reasons
-const config = new FanaSDK.Config('sdk_key_0', 'http://localhost:3001')
-                                   ^SDK Key     ^Flag Bearer Address
+// the sdk key is hard-coded here, but you should have it as an environment variable for security purposes
+const config = new FanaConfig('node_key', 'http://localhost:3001', 3600000)
+                                ^Node SDK Key  ^Flag Bearer Address   ^Reinitialization Interval
 ```
 
-4. Next, you need to instantiate the `Client` by calling `config.connect()`. This will create a `Client` instance. Note that this is an asynchronous action, so you will need to use `async/await` or promises to perform this step:
+4. Next, instantiate a `FanaClient` instance by calling `config.connect()`. Note that this is an asynchronous action, so you will need to use `async/await` or promises to perform this step:
 
 ```javascript
 // with async/await
@@ -40,11 +42,11 @@ config.connect().then((c) => {
 });
 ```
 
-Now you can use the `client.evaluateFlag()` method. It takes three arguments:
+Now you can use the `FanaClient.prototype.evaluateFlag()` method. It takes three arguments:
 
-- The flag key that you wish to evaluate
-- The user context object
-- An optional argument for a default value
+- (string) The flag key that you wish to evaluate
+- (object) The user context object
+- (boolean) An optional argument for a default value
 
 ```javascript
 app.get("/", (req, res) => {

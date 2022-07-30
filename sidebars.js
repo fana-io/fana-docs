@@ -50,12 +50,13 @@ module.exports = {
     { 
       type: 'category',
       label: 'Flag Management',
-      items: ['flag-management/dashboard', 'flag-management/backend', 'flag-management/database'],
+      items: ['flag-management/example-flow', 'flag-management/flags', 'flag-management/audiences', 'flag-management/attributes', 'flag-management/audit-history', 'flag-management/settings'],
     },
     {
       type: 'category',
       label: 'Software Development Kit (SDK)',
-      items: [
+      items: [ 
+        'sdk/sdk-keys',
         {
           type: 'category',
           label: 'React SDK',

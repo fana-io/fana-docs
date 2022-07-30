@@ -6,51 +6,40 @@ id: node-sdk-reference
 
 The Node SDK exports two classes:
 
-- `Config` class
-- `Client` class
+- `FanaConfig` class
+- `FanaClient` class
 
-## `Config`
+## `FanaConfig`
 
-The `Config` class is used to instantiate a `config` object, which is the first step to setting up with the Node SDK.
+The `FanaConfig` class is used to instantiate a `config` object, which is the first step to setting up with the Node SDK.
 
-### `Config` Constructor Parameters:
+### `FanaConfig` Constructor Parameters:
 
-- `sdkKey`: Expects a **string** representing your SDK key. This is provided in the Dashboard's Settings page.
+- `sdkKey`: Expects a **string** representing your Node SDK key. This is provided in the Dashboard's Settings page.
 - `bearerAddress`: Expects a **string** representing the address where the Flag Bearer is being hosted.
+- `reinitializationInterval`: (Optional) Expects an **integer** representing the number of milliseconds the client should wait between reinitializations. If not provided, there will be no reinitializations. More information about this functionality in the `FanaClient.prototype.getFlags()` section below.
 
-### `Config` Instance Methods:
+### `FanaConfig` Instance Methods:
 
-#### `Config.prototype.connect()`
+#### `FanaConfig.prototype.connect()`
 
-1. Instantiates a `Client` object
-2. Asynchronously invokes and awaits the new `Client`'s `getFlags` method
-3. Synchronously invokes the new `Client`'s `setStream()` method
-4. Returns the `Client` object
+1. Instantiates a `FanaClient` object
+2. Has the client instance fetch flag data from Flag Bearer
+3. Has the client instance set up SSE connection with Flag Bearer
+4. Returns client instance object
 
-## `Client`
+## `FanaClient`
 
-The `Client` class is responsible for holding flag data, as well as the essential `evaluateFlags()` method.
+The `FanaClient` class generates an object responsible for holding flag data and providing the essential `evaluateFlags()` method.
 
-### `Client` Constructor Parameters:
+### `FanaClient` Constructor Parameters:
 
-- `config`: Expects a **`Config` object**.
-- Note that `Config.prototype.connect()` automatically instantiates the `Client` for you, so you needn't do this yourself.
+- `config`: Expects a **`FanaConfig` object**.
+- Note that `FanaConfig.prototype.connect()` automatically instantiates the client instance for you, so you needn't do this yourself.
 
-### `Client` Instance Methods:
+### `FanaClient` Instance Methods:
 
-#### `Client.prototype.getFlags()`
-
-This method sends an initialization GET to the Flag Bearer. The Flag Bearer then returns the latest flag ruleset. The `Client` then stores it in its `flags` instance property.
-
-This method is automatically invoked during `Config.prototype.connect()`. You will not need to invoke this yourself.
-
-#### `Client.prototype.setFlag(newFlag)`
-
-This method simply replaces the `Client`'s `flags` instance property with the new data. This is meant to occur when updates are streamed via the SSE connection with the Flag Bearer.
-
-You will not need to invoke this yourself.
-
-#### `Client.prototype.evaluateFlag(flagKey, userContext, defaultValue)`
+#### `FanaClient.prototype.evaluateFlag(flagKey, userContext, defaultValue)`
 
 This method takes three arguments:
 
@@ -58,9 +47,26 @@ This method takes three arguments:
 - `userContext`: Expects an **object** containing the attributes pertaining to a user or session.
   - `{ userId: 'jjuy', beta: true, state: 'CA' }`
   - This is an example. The attributes you provide will be dependent on your setup.
-- `defaultValue`: Expects a **boolean** representing what the evaluation should be in cases where flag data is unavailable, or the provided `flagKey` is invalid. This is optional and is `false` by default.
+- `defaultValue`: Expects a **boolean** representing what the evaluation should be in cases where flag data is unavailable or the provided `flagKey` is invalid. This is optional and is `false` by default.
 
-This method processes the User Context against its flag data and returns the evaluation as `true` or `false`.
+This method processes the User Context against the flag targeting settings and returns the evaluation as `true` or `false`.
 
-#### `Client.prototype.setStream()`
-////////////
+> The below methods are called automatically and are only here for reference. You needn't invoke these.
+
+#### `FanaClient.prototype.getFlags()`
+
+This method sends an initialization GET to the Flag Bearer. The Flag Bearer then returns the latest flag ruleset. The client instance then stores it in its `flags` instance property.
+
+This method is automatically invoked during `FanaConfig.prototype.connect()`.
+
+> ##### On Reinitializations/Syncing
+>
+> Network failures can potentially cause the SDK to fall out of sync as it may miss an update streamed from the Flag Bearer. To help with this, you can specify a `reinitializationInterval` when you instantiate your `FanaConfig` object for the first time. At each interval, the SDK will call `getFlags` again, refreshing its internal flagset with the latest data.
+
+#### `FanaClient.prototype.setFlag(newFlagKey, newFlagData)`
+
+This method simply updates the client instance's `flags` instance property with the new data. This occurs when updates are streamed via the SSE connection with the Flag Bearer.
+
+#### `FanaClient.prototype.setStream()`
+
+This method sets up an event source stream with the Flag Bearer. This allows for the client instance to receive real-time updates to flag data.
