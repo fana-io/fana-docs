@@ -10,6 +10,8 @@ Audiences represent groups of users that you wish to target. They are made up of
 
 The main view of the Audiences section is a list of all of your audiences. You can see the name, key, when it was created, and when it was last updated. There is also a Search bar where you can filter by both name and key.
 
+![img alt](/img/aud_dash.png)
+
 ## Creating an Audience
 
 To create an audience, click on the _Create Audience_ button on the top right of the Audience Dashboard. Clicking on it will reveal a modal. Here are the fields:
@@ -22,13 +24,17 @@ To create an audience, click on the _Create Audience_ button on the top right of
    - ALL means that the user must meet all conditions to be considered part of this audience.
 4. **Conditions**. This is optional and you can adjust it later if needed. See below for more information on building conditions.
 
-Once you're done filling out all of the fields, you can hit _Create_ to create your audience.
+![img alt](/img/aud_create_nocon.png)
+
+Once you're done filling out all of the fields, you can hit _Create Audience_ to create your audience.
 
 ### Building Conditions
 
 > If you don't have any attributes, you will not be able to build a condition. Refer to [the Attributes page](attributes.md) for information on creating attributes.
 
 In the _Create a new audience_ form, you will see a button to _Add Condition_. This will bring up a _New Condition_ form that prompts you to select one of your attributes. After doing so, two more fields will show up: Operator and Condition Value.
+
+![img alt](/img/aud_create_con.png)
 
 The _Operator_ represents the relationship between the attribute and value. The options will depend on what the attribute's data type is. For example, if the attribute is a string, you can select from "is equal to", "is in", "contains", etc.
 
@@ -50,6 +56,8 @@ Here are some examples of conditions and how they would evaluate:
 ## Audience Details
 
 Clicking into an audience on the dashboard will bring up the details page. You can see the title, key, conditions, as well as Related Flags - a list of all of the flags this audience is being used in. There is also a _New Condition_ form on the right, and a _Delete Audience_ button in the top right.
+
+![img alt](/img/aud_dets.png)
 
 ## Editing an Audience
 

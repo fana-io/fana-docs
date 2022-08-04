@@ -21,8 +21,6 @@ Here, the SDK key is being hardcoded, but you should keep it in an environment v
 
 To find your SDK keys, go to your Manager Dashboard and navigate to the Settings page. Each SDK key can be copied with a click.
 
-// image of the settings page here
-
-![img alt](/img/docusaurus.png)
+![img alt](/img/settings.png)
 
 You also have the option of regenerating your SDK keys. However, be advised that this will invalidate the current one, so do this with caution.

@@ -12,6 +12,8 @@ The main view of the Flags section is a list of all of your flags. You can see t
 
 There is a Search bar where you can filter by both name and key. There is also a checkbox for you to view only Enabled flags.
 
+![img alt](/img/flag_dash.png)
+
 ## Creating a Flag
 
 To create an flag, click on the _Create Flag_ button on the top right of the Flag Dashboard. Clicking on it will reveal a modal. Here are the fields:
@@ -22,11 +24,15 @@ To create an flag, click on the _Create Flag_ button on the top right of the Fla
 3. **Targeted audiences**. These are the audiences that you want your flag to target. You can select none, one, or multiple. You can edit this later.
    - If you select multiple audiences, note that the user only needs to qualify for at least ONE of the audiences in order to evaluate to true for this flag.
 
+![img alt](/img/flag_create.png)
+
 Once you're done filling out all of the fields, you can hit _Create_ to create your flag. The flag will always be disabled upon creation.
 
 ## Flag Details
 
 Clicking into an flag on the dashboard will bring up the details page. You can see the title, key, status, and targeted audiences. There is also an _Add Audience_ form on the right, and a _Delete Flag_ button in the top right.
+
+![img alt](/img/flag_dets.png)
 
 ## Editing a Flag
 

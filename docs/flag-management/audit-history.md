@@ -21,3 +21,5 @@ Each entry contains the following:
 There is a Search bar that will search through entity types, entity keys, and events.
 
 By default, logs are displayed with the newest entries first. You can also click on the Sort icon next to the Date column header to see the oldest entries first.
+
+![img alt](/img/history.png)
