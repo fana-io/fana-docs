@@ -9,16 +9,14 @@ const config = {
   title: 'Fána',
   tagline: 'Feature Flags with Audience Targeting',
   url: 'https://fana-io.github.io',
-  baseUrl: '/docs/',
+  baseUrl: '/fana-docs/', // :'( changing this to anything else breaks everything
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
-  trailingSlash: false,
-
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'fana-io', // Usually your GitHub org/user name.
+  organizationName: 'Fána', // Usually your GitHub org/user name.
   projectName: 'fana-docs', // Usually your repo name.
 
   // Even if you don't use internalization, you can use this field to set useful
@@ -59,12 +57,13 @@ const config = {
         },
         items: [
           {
-            to: '/',
+            type: 'doc',
+            docId: 'intro',
             position: 'left',
             label: 'Docs',
           },
           {
-            href: 'https://github.com/fana-io',
+            href: 'https://github.com/fana-io/fana-docs',
             label: 'GitHub',
             position: 'right',
           },
