@@ -44,8 +44,8 @@ module.exports = {
     },
     { 
       type: 'doc',
-      id: 'installation',
-      label: 'Installation'
+      id: 'deployment',
+      label: 'Deployment'
     },
     { 
       type: 'category',
