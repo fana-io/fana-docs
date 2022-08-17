@@ -1,5 +1,0 @@
----
-id: quickstart
----
-
-# Quickstart
