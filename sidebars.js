@@ -39,13 +39,8 @@ module.exports = {
     },
     { 
       type: 'doc',
-      id: 'quickstart',
-      label: 'Quickstart'
-    },
-    { 
-      type: 'doc',
-      id: 'deployment',
-      label: 'Deployment'
+      id: 'getting-started',
+      label: 'Getting Started'
     },
     { 
       type: 'category',

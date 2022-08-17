@@ -14,9 +14,7 @@ const config = {
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
 
-  // GitHub pages deployment config.
-  // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'Fána', // Usually your GitHub org/user name.
+  organizationName: 'fana-io', // Usually your GitHub org/user name.
   projectName: 'fana-docs', // Usually your repo name.
 
   presets: [
@@ -25,11 +23,11 @@ const config = {
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
+          path: './docs',
+          routeBasePath: '/',
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/fana-io/fana-docs',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
